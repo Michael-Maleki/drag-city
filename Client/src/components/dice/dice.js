@@ -10,17 +10,8 @@ class Dice extends React.Component {
   componentDidMount = () => {
     this.setState({initial: false})
   }
-  // rollAll() {
-  //   this.reactDice.rollAll()
-  // }
-
-  // rollDoneCallback(num) {
-  //   console.log(`You rolled a ${num}`)
-  //   this.props.p1Move(num)
-  // }
 
   render() {
-    // console.log(this.props)
     return (
       <div>
         <ReactDice

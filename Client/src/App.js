@@ -4,6 +4,15 @@ import axios from "axios";
 
 import Dice from "./components/dice/dice";
 import Dice2 from "./components/dice/dice2";
+import back from "./components/assets/back.svg";
+import restart from "./components/assets/restart.svg";
+import play from "./components/assets/play.svg";
+import pause from "./components/assets/pause.svg";
+
+// import lunar from "./components/assets/lunar.mp3";
+// import think from "./components/assets/think.mp3";
+import retro from "./components/assets/retro.mp3";
+
 // import { tupleTypeAnnotation } from '@babel/types';
 
 class App extends React.Component {
@@ -37,7 +46,10 @@ class App extends React.Component {
     },
     p1Check: false,
     p2Check: false,
+    play: true,
+    pause: false,
   };
+
 
   componentDidMount = () => {
     axios.get("http://localhost:8080").then((response) => {
@@ -47,7 +59,27 @@ class App extends React.Component {
     });
 
     this.setState({ initial: true, p1Visibility: { visibility: "hidden" } });
+    this.playMusic()
   };
+
+  url = retro;
+  audio = new Audio(retro);
+
+  playMusic = () => {
+    this.setState({ play: true, pause: false })
+      
+    this.audio.play();
+    this.audio.addEventListener('ended', function () {
+      this.currentTime = 0;
+      this.play();
+    }, false);
+    }
+    
+    pauseMusic = () => {
+      this.setState({ play: false, pause: true })
+        this.audio.pause();
+    }
+
 
   p1Move = (num, initial) => {
     if (initial === false) {
@@ -216,15 +248,30 @@ class App extends React.Component {
     }
   };
 
+  startOver = () => {
+    window.location.reload(false);
+  }
+
+  goBack = () => {
+    window.location.pathname = '/'
+  }
+
+
+
   render() {
+    
     return (
       <>
         <div className="track-bg">
           <div className="abs-box">
-            <div className="container">
+            <div className="container unselectable">
               <div className="container__side">
+                  <div className="back-restart">
+                    <img onClick={this.goBack} src={back} alt=""/>
+                    <img onClick={this.startOver} src={restart} alt=""/>
+                  </div>
                 <div className="car-select" style={this.state.p1SelectorVis}>
-                  <h4 className="choose">Choose Your Car</h4>
+                  <h4 className="choose">Choose <br/> Your Car</h4>
                   <img
                     className="car"
                     src={this.state.url.orange}
@@ -279,9 +326,13 @@ class App extends React.Component {
                   <img className="car" src={this.state.p2Car} alt=""></img>
                 </div>
               </div>
-              <div className="container__right">
+              <div className="container__side">
+                  <div className="audio">
+                    <img id="play" onClick={this.playMusic} src={play} alt=""/>
+                    <img id="pause" onClick={this.pauseMusic} src={pause} alt=""/>
+                  </div>
                 <div className="car-select" style={this.state.p2SelectorVis}>
-                  <h4 className="choose">Choose Your Car</h4>
+                  <h4 className="choose">Choose <br/> Your Car</h4>
                   <img
                     className="car"
                     src={this.state.url.orange}
