@@ -18,13 +18,16 @@ body {
   align-items: center;
 }
 
+
+
 .track-bg {
   background: url("../src/components/assets/track.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   display: relative;
   z-index: -2;
-  height: 665px;
+	height: 665px;
+	overflow: hidden;
 }
 
 .abs-box {
@@ -157,4 +160,13 @@ body {
   text-align: center;
   font-family: Helvetica;
   margin-top: 1rem;
+}
+
+.noborder {
+
+	&:hover {
+		margin: 0;
+		border: none;
+		cursor: default;
+	}
 }

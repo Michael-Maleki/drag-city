@@ -64,18 +64,18 @@ class App extends React.Component {
 
   playMusic = () => {
     this.setState({ play: true, pause: false })
-      
+
     this.audio.play();
     this.audio.addEventListener('ended', function () {
       this.currentTime = 0;
       this.play();
     }, false);
-    }
-    
-    pauseMusic = () => {
-      this.setState({ play: false, pause: true })
-        this.audio.pause();
-    }
+  }
+
+  pauseMusic = () => {
+    this.setState({ play: false, pause: true })
+    this.audio.pause();
+  }
 
 
   p1Move = (num, initial) => {
@@ -236,14 +236,27 @@ class App extends React.Component {
   };
 
   checkPlayers = () => {
+
     if (this.state.p1Check === true || this.state.p2Check === true) {
+
+      this.noBorder()
+
       this.setState({
         p1Visibility: {
           visibility: "visible",
         },
       });
+
     }
   };
+
+  noBorder = () => {
+    let vehicle = document.querySelectorAll(".car");
+    let i = 0
+    for (i = 0; i < vehicle.length; i++) {
+      vehicle[i].classList.add("noborder");
+    }
+  }
 
   startOver = () => {
     window.location.reload(false);
@@ -256,19 +269,19 @@ class App extends React.Component {
 
 
   render() {
-    
+
     return (
       <>
         <div className="track-bg">
           <div className="abs-box">
             <div className="container unselectable">
               <div className="container__side">
-                  <div className="back-restart">
-                    <img onClick={this.goBack} src={back} alt=""/>
-                    <img onClick={this.startOver} src={restart} alt=""/>
-                  </div>
+                <div className="back-restart">
+                  <img onClick={this.goBack} src={back} alt="" />
+                  <img onClick={this.startOver} src={restart} alt="" />
+                </div>
                 <div className="car-select" style={this.state.p1SelectorVis}>
-                  <h4 className="choose">Choose <br/> Your Car</h4>
+                  <h4 className="choose">Choose <br /> Your Car</h4>
                   <img
                     className="car"
                     src={this.state.url.orange}
@@ -324,12 +337,12 @@ class App extends React.Component {
                 </div>
               </div>
               <div className="container__side">
-                  <div className="audio">
-                    <img id="play" onClick={this.playMusic} src={play} alt=""/>
-                    <img id="pause" onClick={this.pauseMusic} src={pause} alt=""/>
-                  </div>
+                <div className="audio">
+                  <img id="play" onClick={this.playMusic} src={play} alt="" />
+                  <img id="pause" onClick={this.pauseMusic} src={pause} alt="" />
+                </div>
                 <div className="car-select" style={this.state.p2SelectorVis}>
-                  <h4 className="choose">Choose <br/> Your Car</h4>
+                  <h4 className="choose">Choose <br /> Your Car</h4>
                   <img
                     className="car"
                     src={this.state.url.orange}
