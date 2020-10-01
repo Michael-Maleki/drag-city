@@ -9,6 +9,10 @@ class intro extends React.Component {
 
   componentDidMount = () => {
     this.audio.play();
+    this.audio.addEventListener('ended', function () {
+      this.currentTime = 0;
+      this.play();
+    }, false);
   };
 	
 	pauseMusic = () => {

@@ -8,9 +8,6 @@ import back from "./components/assets/back.svg";
 import restart from "./components/assets/restart.svg";
 import play from "./components/assets/play.svg";
 import pause from "./components/assets/pause.svg";
-
-// import lunar from "./components/assets/lunar.mp3";
-// import think from "./components/assets/think.mp3";
 import retro from "./components/assets/retro.mp3";
 
 // import { tupleTypeAnnotation } from '@babel/types';
@@ -21,7 +18,7 @@ class App extends React.Component {
     p1Counter: 0,
     p2Counter: 0,
     p1Height: {
-      height: "75px",
+      height: "75x",
     },
     p2Height: {
       height: "75px",
