@@ -59,6 +59,10 @@ class App extends React.Component {
     this.playMusic()
   };
 
+  componentWillUnmount = () => {
+    this.pauseMusic()
+  }
+
   url = retro;
   audio = new Audio(retro);
 
@@ -149,7 +153,7 @@ class App extends React.Component {
       setTimeout(function () {
         alert("P1 WINS!");
         window.location.reload(false);
-      }, 100);
+      }, 1000);
     }
   };
 
@@ -162,7 +166,7 @@ class App extends React.Component {
       setTimeout(function () {
         alert("P2 WINS!");
         window.location.reload(false);
-      }, 100);
+      }, 1000);
     }
   };
 

@@ -120,7 +120,8 @@ body {
       display: flex;
 			align-items: flex-start;
 			border: none;
-			
+			transition: height 0.5s ease-in-out;
+
 			& img {
 
 				&:hover {
@@ -137,6 +138,7 @@ body {
       width: 50%;
       display: flex;
 			align-items: flex-start;
+			transition: height 0.5s ease-in-out;
 			
 			& img {
 
