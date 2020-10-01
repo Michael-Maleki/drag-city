@@ -83,12 +83,14 @@ class App extends React.Component {
       this.setState({ p1Counter: this.state.p1Counter + num, num1: num });
       this.p1Increment();
     }
+
     if (this.state.dice1 === true) {
       this.setState({
         dice1: false,
         dice2: true,
       });
     }
+
     if (this.state.dice1 === false) {
       setTimeout(
         this.setState({
@@ -130,6 +132,7 @@ class App extends React.Component {
         2000
       );
     }
+
     this.setState({
       p1Visibility: {
         visibility: "visible",
@@ -163,7 +166,7 @@ class App extends React.Component {
     }
   };
 
-  p1Orange = () => {
+  p1Orange = (e) => {
     this.setState({
       p1Car: this.state.url.orange,
       p1SelectorVis: { visibility: "hidden" },
@@ -238,25 +241,13 @@ class App extends React.Component {
   checkPlayers = () => {
 
     if (this.state.p1Check === true || this.state.p2Check === true) {
-
-      this.noBorder()
-
       this.setState({
         p1Visibility: {
           visibility: "visible",
         },
       });
-
     }
   };
-
-  noBorder = () => {
-    let vehicle = document.querySelectorAll(".car");
-    let i = 0
-    for (i = 0; i < vehicle.length; i++) {
-      vehicle[i].classList.add("noborder");
-    }
-  }
 
   startOver = () => {
     window.location.reload(false);
@@ -266,10 +257,7 @@ class App extends React.Component {
     window.location.pathname = '/'
   }
 
-
-
   render() {
-
     return (
       <>
         <div className="track-bg">
@@ -283,6 +271,7 @@ class App extends React.Component {
                 <div className="car-select" style={this.state.p1SelectorVis}>
                   <h4 className="choose">Choose <br /> Your Car</h4>
                   <img
+                    id="car1"
                     className="car"
                     src={this.state.url.orange}
                     onClick={this.p1Orange}
